@@ -4,7 +4,7 @@ import { Box, Button, Heading, Container, Center, Stack, Image, Input } from '@c
 function Home () {
     return (
         <Box>
-            <Heading>
+            <Heading textAlign={"center"} marginTop={"10vh"}>
                 2024 Election
             </Heading>
             <Center height={"50vh"} justifyContent={"center"}>
@@ -18,6 +18,7 @@ function Home () {
                     </Stack>
                 </Container>
             </Center>
+
         </Box>
     );
 }
