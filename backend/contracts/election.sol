@@ -27,11 +27,32 @@ contract Election {
         }
     }
 
+    //Get the candidate voted for
     function GetVote() public view returns(string memory) {
         return candidate;
     }
 
+    //Get the total votes for each side - Must be viewable by only the college
     function GetCount() public view returns(Counts memory) {
         return count;
+    }
+
+    //must be seen by the college - not public view
+    function Winner() public view returns(string memory)
+    {   
+        //blue is Kamala
+        if(count.blue_total > count.red_total)
+        {
+            return "The winner is Kamala";
+        }
+
+        //red is Trump
+        else if(count.red_total > count.blue_total)
+        {
+            return "The winner is Trump";
+        }
+        else {
+            return "Votes are tied!";
+        }
     }
 }
