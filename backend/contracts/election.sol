@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+
 contract Election {
     string candidate; // Trump, Harris, etc
     address[16] voter;
@@ -33,5 +34,17 @@ contract Election {
 
     function GetCount() public view returns(Counts memory) {
         return count;
+    }
+
+    struct Voter {
+        string firstName;
+        string lastName;
+        uint voterId;
+    }
+
+    mapping(address => Voter) public voters;
+
+    function registerVoter(string memory _firstName, string memory _lastName, uint _voterId) public {
+        voters[msg.sender] = Voter(_firstName, _lastName, _voterId);
     }
 }
