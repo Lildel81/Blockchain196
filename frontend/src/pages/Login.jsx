@@ -43,7 +43,7 @@ function App() {
       const signer = provider.getSigner();
 
       // Contract setup
-      const electionAddress = "YOUR_CONTRACT_ADDRESS"; // Replace with your actual contract address
+      const electionAddress = "OUR_CONTRACT_ADDRESS"; // We need to put our actual contract address in here
       const electionABI = [
         "function registerVoter(string memory firstName, string memory lastName, uint256 voterId)"
       ];
