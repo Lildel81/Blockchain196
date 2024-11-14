@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 
+import productRoutes from './routes/Product.route.js';
 import authRoutes from './routes/User.route.js';
 
 // Load env variables from .env file
