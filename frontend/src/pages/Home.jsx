@@ -1,9 +1,17 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 import { Box, Button, Heading, Container, Center, Stack, Image, Input } from '@chakra-ui/react';
+
+/* 
+::TODO::
+React component for our homepage
+Buttons need to implement calls to the backend API
+*/
 
 function Home () {
     return (
         <Box>
+            <Navbar />
             <Heading textAlign={"center"} marginTop={"10vh"}>
                 2024 Election
             </Heading>
@@ -13,12 +21,20 @@ function Home () {
             <Center height="50vh">
                 <Container justifyContent={"center"} textAlign={"space-between"}>
                     <Stack direction="row" spacing={32} width="100%">
-                        <Button width="100%">Vote for Kamala Harris</Button>
-                        <Button width="100%">Vote for Donald Trump</Button>
+                        <Button width="100%" onClick={() => {
+                            console.log("Voting for Harris")
+                            // Post a Vote to the API for Harris
+                            }   
+                        }>Vote for Kamala Harris</Button>
+
+                        <Button width="100%" onClick={() => {
+                            console.log("Voting for Trump")
+                            // Post a Vote to the API for Trump
+                            }
+                        }>Vote for Donald Trump</Button>
                     </Stack>
                 </Container>
             </Center>
-
         </Box>
     );
 }

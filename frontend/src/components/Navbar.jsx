@@ -24,26 +24,24 @@ const Navbar = () => {
 					fontWeight={"bold"}
 					textTransform={"uppercase"}
 					textAlign={"center"}
-					bgGradient={"linear(to-r, cyan.400, blue.500)"}
+					bgGradient={"linear(to-r, red.400, white, blue.400)"}
 					bgClip={"text"}
 				>
-					<Link to={"/"}>Product Store 🛒</Link>
+					<Link to={"/"}>US Presidential Election</Link>
+				</Text>
+
+				<Text>
+					<Link to={"/info"}>Election Info</Link>
+				</Text>
+
+				<Text>
+					<Link to={"/login"}>Login</Link>
 				</Text>
 
 				<HStack spacing={3} alignItems={"center"}>
-					<Link to={"/create"}>
-						<Button>
-							<PlusSquareIcon fontSize={20} />
-						</Button>
-					</Link>
 					<Button onClick={toggleColorMode}>
 						{colorMode === "light" ? <IoMoon /> : <LuSun size='20' />}
 					</Button>
-                    <Link to={"/my_route"}>
-						<Button>
-							< InfoIcon fontSize={20} />
-						</Button>
-					</Link>
 				</HStack>
 			</Flex>
 		</Container>
