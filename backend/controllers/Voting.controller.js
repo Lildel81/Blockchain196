@@ -1,7 +1,13 @@
 import Vote from '../models/Vote.model.js';
 import mongoose from 'mongoose';
 
-// Get all Users from the database
+/*
+::TODO::
+In here, the controller needs to interface with our smart contract
+it should call smart contract functions to submit a vote for a candidate, get all
+*/
+
+// Get vote totals
 export const getVote = async (request, response) => {
     try {
         const vote = await Vote.find({});
@@ -12,7 +18,7 @@ export const getVote = async (request, response) => {
     }
 }
 
-// Create a new User in the database
+// Submit a vote from a voter_id
 export const submitVote = async (request, response) => {
     // User sends us a user to add to the database
     const vote = request.body;
@@ -21,4 +27,6 @@ export const submitVote = async (request, response) => {
     if (!vote.voter_id || !vote.vote) {
         response.status(400).send({ message: "Vote is missing required fields." });
     }
+
+    console.log("User has voted: " + vote)
 }
