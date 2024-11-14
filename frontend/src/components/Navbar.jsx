@@ -34,6 +34,10 @@ const Navbar = () => {
 					<Link to={"/info"}>Election Info</Link>
 				</Text>
 
+				<Text>
+					<Link to={"/login"}>Login</Link>
+				</Text>
+
 				<HStack spacing={3} alignItems={"center"}>
 					<Button onClick={toggleColorMode}>
 						{colorMode === "light" ? <IoMoon /> : <LuSun size='20' />}
