@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   ChakraProvider,
   Box,
@@ -13,6 +14,40 @@ import {
 } from '@chakra-ui/react';
 import Web3 from 'web3';
 
+const registerVoter = async (firstName, lastName, voterId) => {
+  if (!window.ethereum) {
+    alert("MetaMask is not installed!");
+    return;
+}
+
+try {
+    // Request account access from MetaMask
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+    // Get the user's account
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    const voterAccount = accounts[0];
+
+    // Send voter details to backend API
+    const response = await fetch("http://localhost:5000/api/votes/register-voter", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ firstName, lastName, voterId, voterAccount }),
+    });
+
+    const data = await response.json();
+    if (data.success) {
+        console.log("Voter registered successfully:", data);
+    } else {
+        console.error("Error:", data.message);
+    }
+  } catch (error) {
+      console.error("Error registering voter:", error);
+  }
+};
+
 function App() {
   // State to manage form data
   const [formData, setFormData] = useState({
@@ -25,55 +60,6 @@ function App() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
-
-  // Register voter function to interact with the smart contract
-  const registerVoter = async () => {
-    // Ensure MetaMask is available
-    if (!window.ethereum) {
-      alert("MetaMask is not installed!");
-      return;
-    }
-
-    try {
-      // Request account access
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      
-      // Initialize Web3 instance
-      const web3 = new Web3(window.ethereum);
-
-      // Set up contract instance
-      const electionAddress = "OUR_CONTRACT_ADDRESS"; // Replace with your actual contract address
-      const electionABI = [
-        {
-          "constant": false,
-          "inputs": [
-            { "name": "firstName", "type": "string" },
-            { "name": "lastName", "type": "string" },
-            { "name": "voterId", "type": "uint256" }
-          ],
-          "name": "registerVoter",
-          "outputs": [],
-          "payable": false,
-          "stateMutability": "nonpayable",
-          "type": "function"
-        }
-      ];
-      const electionContract = new web3.eth.Contract(electionABI, electionAddress);
-
-      // Send transaction
-      const accounts = await web3.eth.getAccounts();
-      await electionContract.methods.registerVoter(
-        formData.firstName,
-        formData.lastName,
-        parseInt(formData.voterId)
-      ).send({ from: accounts[0] });
-      
-      alert("Voter registered successfully!");
-    } catch (error) {
-      console.error("Error registering voter:", error);
-      alert("Registration failed. Please try again.");
-    }
   };
 
   return (
