@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   ChakraProvider,
@@ -12,7 +11,7 @@ import {
   Container,
   Text,
 } from '@chakra-ui/react';
-import { ethers } from 'ethers';
+import Web3 from 'web3';
 
 function App() {
   // State to manage form data
@@ -39,23 +38,37 @@ function App() {
     try {
       // Request account access
       await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
+      
+      // Initialize Web3 instance
+      const web3 = new Web3(window.ethereum);
 
-      // Contract setup
-      const electionAddress = "OUR_CONTRACT_ADDRESS"; // We need to put our actual contract address in here
+      // Set up contract instance
+      const electionAddress = "OUR_CONTRACT_ADDRESS"; // Replace with your actual contract address
       const electionABI = [
-        "function registerVoter(string memory firstName, string memory lastName, uint256 voterId)"
+        {
+          "constant": false,
+          "inputs": [
+            { "name": "firstName", "type": "string" },
+            { "name": "lastName", "type": "string" },
+            { "name": "voterId", "type": "uint256" }
+          ],
+          "name": "registerVoter",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
       ];
-      const electionContract = new ethers.Contract(electionAddress, electionABI, signer);
+      const electionContract = new web3.eth.Contract(electionABI, electionAddress);
 
       // Send transaction
-      const transaction = await electionContract.registerVoter(
+      const accounts = await web3.eth.getAccounts();
+      await electionContract.methods.registerVoter(
         formData.firstName,
         formData.lastName,
         parseInt(formData.voterId)
-      );
-      await transaction.wait();
+      ).send({ from: accounts[0] });
+      
       alert("Voter registered successfully!");
     } catch (error) {
       console.error("Error registering voter:", error);
@@ -129,5 +142,3 @@ function App() {
 }
 
 export default App;
-
-
