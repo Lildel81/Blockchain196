@@ -8,10 +8,11 @@ import e from "express";
 import Web3 from "web3";
 
 // Set up Web3 with HTTP provider (infura, alchemy, etc.)
-const web3 = new Web3(new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL));
+const web3 = new Web3(new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL || "http://127.0.0.1:7545")) // Dummy URL fallback));
 
 // Contract address and ABI
-const electionAddress = "http://127.0.0.1:7545"; // Replace with actual contract address
+const electionAddress = "0x0000000000000000000000000000000000000000"; // Placeholder address
+
 const electionABI = [
     {
         "constant": false,
