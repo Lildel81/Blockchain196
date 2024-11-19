@@ -1,0 +1,5 @@
+truffle compile --config truffle-config.cjs
+
+^
+
+Need to compile .cfs - fix for ESMODULE import issues
