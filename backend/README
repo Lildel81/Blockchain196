@@ -1,5 +1,13 @@
 BACKEND TRUFFLE BUILD INSTRUCTIONS, READ VERY CAREFULLY
 
+BASH SCRIPT:
+
+./build_and_run.sh
+
+---------------------------------------------------------
+
+MANUAL WAY:
+
 1. run ganache-cli on the command line
     ganache-cli
 2. remove the build directory from the BACKEND
