@@ -5,7 +5,7 @@ it should call smart contract functions to submit a vote for a candidate, get al
 */
 
 import e from 'express';
-import {submitContractVote, getContractVoteCounts} from '../contract.js'
+import {submitContractVote, getContractVoteCounts, validateVoterAddress} from '../contract.js'
 
 // Get vote totals
 export const getVote = async (request, response) => {
@@ -16,8 +16,6 @@ export const getVote = async (request, response) => {
             redVotes: Number(data.redVotes), // or data.redVotes.toString() for string
             blueVotes: Number(data.blueVotes), // or data.blueVotes.toString()
         };
-
-        console.log("Got vote!")
         response.status(200).json({ success: true, data: formattedData });
     } catch (error) {
         console.error("Error fetching vote count:", error);
@@ -29,18 +27,33 @@ export const getVote = async (request, response) => {
 // Submit a vote from a wallet address
 export const submitVote = async (request, response) => {
     const { address, vote } = request.body;
-    // Validate the vote
+
+    // Validate the request
     if (!address || !vote) {
-        return response.status(400).send({ message: "Vote is missing required fields." });
+        return response.status(400).json({ message: "Vote is missing required fields." });
     }
+
     try {
-        // We get a result with the vote (success/failure on the contract)
-        const result = submitContractVote(address, vote);
+        // Validate the voter address
+        const isValid = await validateVoterAddress(address);
+        if (!isValid) {
+            return response.status(400).json({ success: false, message: "Invalid voter address." });
+        }
+
+        // Submit the vote
+        const result = await submitContractVote(address, vote);
         response.status(200).json({ success: true, data: result });
     } catch (error) {
-        console.error("Error submitting vote:", error);
+        // Handle "already voted" error
+        if (error.message === "Address has already voted") {
+            return response.status(400).json({ success: false, message: error.message });
+        }
+
+        // Generic error handling
+        console.error("Error submitting vote:", error.message);
         response.status(500).json({ success: false, message: "Failed to submit vote to blockchain." });
     }
-}
+};
+
 
 

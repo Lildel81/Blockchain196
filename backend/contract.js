@@ -33,21 +33,37 @@ const abi = contractJson.abi;
 
 const electionContract = new web3.eth.Contract(abi, contractAddress);
 
+export const validateVoterAddress = async (voterAddress) => {
+    return (accounts.includes(voterAddress));
+}
+
 // Submit a vote
 export const submitContractVote = async (voterAddress, candidate) => {
     try {
         await electionContract.methods.Vote(candidate).send({
             from: voterAddress,
-            gas: 6721975, // Adjust gas limit as needed
-            gasPrice: web3.utils.toWei('20', 'gwei') // Use legacy gas price
+            gas: 6721975,
+            gasPrice: web3.utils.toWei('20', 'gwei'),
         });
-        console.log("Voter: " + address + "has voted.");
+        console.log("Voter: " + voterAddress + " has voted.");
         return "Vote submitted successfully!";
     } catch (error) {
-        console.error("Error submitting vote:", error);
-        return "Error submitting vote:" + error;
+        // Handle revert errors
+        if (error.cause && error.cause.data) {
+            const reason = error.cause.data[Object.keys(error.cause.data)[0]].reason;
+            console.error("Smart contract reverted:", reason);
+
+            if (reason === "Address has already voted") {
+                throw new Error(reason); // Rethrow with custom error message
+            }
+        }
+
+        console.error("Error submitting vote:", error.message);
+        throw error; // Rethrow other errors
     }
 };
+
+
 
 
 // Get the vote totals
