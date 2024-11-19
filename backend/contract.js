@@ -1,8 +1,29 @@
 import Web3 from 'web3'
 import fs from 'fs'
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 const web3 = new Web3("http://127.0.0.1:8545"); // Ganache RPC URL
 
-const contractJson = JSON.parse(fs.readFileSync('../build/contracts/Election.json', 'utf8'));
+// print out known voters
+const accounts = await web3.eth.getAccounts();
+console.log(" -- VOTERS -- ");
+console.log(accounts);
+
+// Workaround for __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Define the build path
+const buildPath = path.resolve(__dirname, './build/contracts/Election.json');
+
+
+// Check if file exists
+if (!fs.existsSync(buildPath)) {
+    throw new Error(`File not found: ${buildPath}`);
+}
+
+const contractJson = JSON.parse(fs.readFileSync(buildPath, 'utf8'));
 // Get the network ID from Ganache
 const networkId = await web3.eth.net.getId();
 
@@ -13,22 +34,24 @@ const abi = contractJson.abi;
 const electionContract = new web3.eth.Contract(abi, contractAddress);
 
 // Submit a vote
-export const submitVote = async (voterAddress, candidate) => {
+export const submitContractVote = async (voterAddress, candidate) => {
     try {
         await electionContract.methods.Vote(candidate).send({
             from: voterAddress,
             gas: 6721975, // Adjust gas limit as needed
             gasPrice: web3.utils.toWei('20', 'gwei') // Use legacy gas price
         });
-        console.log("Vote submitted successfully!");
+        console.log("Voter: " + address + "has voted.");
+        return "Vote submitted successfully!";
     } catch (error) {
         console.error("Error submitting vote:", error);
+        return "Error submitting vote:" + error;
     }
 };
 
 
 // Get the vote totals
-export const getVoteCounts = async () => {
+export const getContractVoteCounts = async () => {
     try {
         // Call the GetCount method on the contract
         const counts = await electionContract.methods.GetCount().call();

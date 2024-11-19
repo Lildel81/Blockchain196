@@ -1,0 +1,6 @@
+Ganache CLI v6.12.2 (ganache-core: 2.13.2)
+Error: listen EADDRINUSE: address already in use 127.0.0.1:8545
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at doListen (node:net:2014:7)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
