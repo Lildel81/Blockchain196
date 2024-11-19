@@ -1,5 +1,25 @@
-truffle compile --config truffle-config.cjs
+BACKEND TRUFFLE BUILD INSTRUCTIONS, READ VERY CAREFULLY
 
-^
+1. run ganache-cli on the command line
+    ganache-cli
+2. remove the build directory from the BACKEND
+    rm -rf build
+3. Compile the smart contract
+    truffle compile --config truffle-config.cjs
+4. Migrate the smart contract
+    truffle migrate --config truffle-config.cjs
+5. Run tests (test.js simulates a mock tied election)
+    cd test
+    node <your_test.js>
 
-Need to compile .cfs - fix for ESMODULE import issues
+IF YOU DO NOT REBUILD IN THIS WAY ABOVE, TESTS MAY THROW ERRORS THAT VOTERS HAVE ALREADY VOTED
+
+
+THEN:
+
+6. Start the backend node server
+    npm run dev
+7. The backend is now ready to use, and exposes an API for:
+    - Voting (submitting a vote)
+    - Getting the count (checking who won!)
+
