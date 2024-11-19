@@ -1,32 +1,40 @@
 import Vote from '../models/Vote.model.js';
-import mongoose from 'mongoose';
+import { submitVote, getVoteCounts } from '../utils/contract.js'; // Adjust the path to contract.js as needed
 
-/*
-::TODO::
-In here, the controller needs to interface with our smart contract
-it should call smart contract functions to submit a vote for a candidate, get all
-*/
-
-// Get vote totals
-export const getVote = async (request, response) => {
+// Get vote totals from the smart contract
+export const getVoteController = async (request, response) => {
     try {
-        const vote = await Vote.find({});
-        response.status(200).json({ success: true, data: vote });
+        const counts = await getVoteCounts(); // Use the imported function
+        response.status(200).json({ success: true, data: counts });
     } catch (error) {
-        console.log(error);
-        response.status(500).json({ success: false, message: "Error fetching vote." });
+        console.error("Error fetching vote counts:", error);
+        response.status(500).json({ success: false, message: "Error fetching vote counts." });
     }
-}
+};
 
-// Submit a vote from a voter_id
-export const submitVote = async (request, response) => {
-    // User sends us a user to add to the database
-    const vote = request.body;
+// Submit a vote to the smart contract
+export const submitVoteController = async (request, response) => {
+    const { voter_id, vote } = request.body;
 
     // Validate the vote
-    if (!vote.voter_id || !vote.vote) {
-        response.status(400).send({ message: "Vote is missing required fields." });
+    if (!voter_id || !vote) {
+        return response.status(400).send({ message: "Vote is missing required fields." });
     }
 
-    console.log("User has voted: " + vote)
-}
+    try {
+        // Replace with a valid address from Ganache or get from request
+        const voterAddress = "0xYourVoterAddress"; // Update this dynamically if needed
+
+        // Submit the vote via the imported function
+        await submitVote(voterAddress, vote);
+
+        // Optionally save the vote in your database
+        const newVote = new Vote({ voter_id, vote });
+        await newVote.save();
+
+        response.status(200).json({ success: true, message: "Vote submitted successfully." });
+    } catch (error) {
+        console.error("Error submitting vote:", error);
+        response.status(500).json({ success: false, message: "Error submitting vote." });
+    }
+};
