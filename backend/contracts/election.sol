@@ -1,50 +1,36 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-
 contract Election {
-    string candidate; // Trump, Harris, etc
-    address[16] voter;
-
     struct Counts {
-        uint64 red_total;
-        uint64 blue_total;
+        uint256 red_total; // Total votes for red candidate
+        uint256 blue_total; // Total votes for blue candidate
     }
 
-    Counts count;
+    Counts public count;
 
-    constructor() {
-        count = Counts(0, 0);
-    }
+    mapping(address => bool) private hasVoted;
 
+    // Vote function: Cast a vote for "Red" or "Blue"
     function Vote(string memory _candidate) public {
-        candidate = _candidate;
-        // Vote function is entirely two-party system for this basic example
-        if (keccak256(abi.encodePacked(candidate)) == (keccak256(abi.encodePacked("Trump")))) {
+        // Ensure the voter hasn't already voted
+        require(!hasVoted[msg.sender], "Address has already voted");
+
+        // Check the candidate and increment the respective count
+        if (keccak256(abi.encodePacked(_candidate)) == keccak256(abi.encodePacked("Red"))) {
             count.red_total += 1;
-        }
-        else {
+        } else if (keccak256(abi.encodePacked(_candidate)) == keccak256(abi.encodePacked("Blue"))) {
             count.blue_total += 1;
+        } else {
+            revert("Invalid candidate"); // Reject invalid candidates
         }
+
+        // Mark the sender as having voted
+        hasVoted[msg.sender] = true;
     }
 
-    function GetVote() public view returns(string memory) {
-        return candidate;
-    }
-
-    function GetCount() public view returns(Counts memory) {
-        return count;
-    }
-
-    struct Voter {
-        string firstName;
-        string lastName;
-        uint voterId;
-    }
-
-    mapping(address => Voter) public voters;
-
-    function registerVoter(string memory _firstName, string memory _lastName, uint _voterId) public {
-        voters[msg.sender] = Voter(_firstName, _lastName, _voterId);
+    // GetCount function: Return the current vote totals
+    function GetCount() public view returns (uint256 redVotes, uint256 blueVotes) {
+        return (count.red_total, count.blue_total);
     }
 }

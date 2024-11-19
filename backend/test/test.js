@@ -1,6 +1,6 @@
 import { submitVote, getVoteCounts } from '../contract.js';
 
-const voterAddress = "0xYourVoterAddress"; // Replace with an address from Ganache
+const voterAddress = "0x052C47781bD6512480390C9Bbebb99A26Ffc8054"; // Replace with an address from Ganache
 const candidate = "Trump"; // Change to any candidate
 
 const main = async () => {
