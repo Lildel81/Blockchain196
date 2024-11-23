@@ -28,7 +28,7 @@ const Navbar = () => {
 					fontWeight={"600"}
 					textTransform={"uppercase"}
 					textAlign={"center"}
-					bgGradient={"linear(to-l, red.600, gray.500, blue.700)"}
+					bgGradient={"linear(to-l, red.600, gray.500, blue.600)"}
 					bgClip={"text"}
 				>
 					<Link to={"/"}>US Presidential Election</Link>
