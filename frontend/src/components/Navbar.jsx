@@ -24,18 +24,22 @@ const Navbar = () => {
 					fontWeight={"bold"}
 					textTransform={"uppercase"}
 					textAlign={"center"}
-					bgGradient={"linear(to-r, red.400, white, blue.400)"}
+					bgGradient={"linear(to-r, red.400, gray.400, blue.400)"}
 					bgClip={"text"}
 				>
 					<Link to={"/"}>US Presidential Election</Link>
 				</Text>
 
-				<Text>
-					<Link to={"/info"}>Election Info</Link>
+				<Text
+					fontWeight = {"bold"}
+				>
+					<Link to={"/info"}>ELECTION INFO</Link>
 				</Text>
 
-				<Text>
-					<Link to={"/login"}>Login</Link>
+				<Text
+				fontWeight = {"bold"}
+				>
+					<Link to={"/login"}>LOGIN</Link>
 				</Text>
 
 				<HStack spacing={3} alignItems={"center"}>
