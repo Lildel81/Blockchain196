@@ -12,14 +12,23 @@ function Home () {
     const [isSplit, setIsSplit] = useState(false);
 
     return (
-        <Box>
+        <Box 
+            position = "relative"
+            bgImage="url('https://www.downloadclipart.net/large/government-png-clipart.png'),
+                     url('https://www.downloadclipart.net/large/69168-european-stars-clipart.png')" 
+            bgSize="500px 400px, 340px 340px" // Makes sure the image covers the entire background
+            bgPosition="49.5% 840px, 50% 380px" 
+            bgRepeat="no-repeat, no-repeat"
+            minHeight="100vh" 
+        >
+            
             <Navbar />
             <Heading textAlign={"center"} marginTop={"8vh"}>
-                <Text fontWeight="300" textColor="gray.500" fontSize="80"> 2024 DIGITAL BALLOT </Text>
+                <Text fontWeight="300" textColor="gray.600" fontSize="70"> 2024 DIGITAL BALLOT </Text>
             </Heading>
 
-            <Center height="40vh">
-                {/* If not split, show a single circular button */}
+            <Center height="60vh">
+                {/* If not split, show a single rounded button */}
                 {!isSplit ? (
                     <Button
                         onClick={() => setIsSplit(true)} // Splits the button on click
@@ -31,7 +40,7 @@ function Home () {
                         height="300px"
                         _hover={{ bg: "gray.700" }}
                     >
-                        <Text fontWeight="700" fontSize="4xl">
+                        <Text fontWeight="400" fontSize="45" marginBottom={"1vh"}>
                                     CLICK TO CAST VOTE
                                 </Text>
                     </Button>
@@ -58,10 +67,13 @@ function Home () {
                         >
                             <Box>
                                 
-                                <Text fontWeight="400" fontSize="30" color="gray.100" mb={2}>
-                                    KAMALA D. HARRIS
+                                <Text fontWeight="400" fontSize="30" color="gray.100" display="inline">
+                                    KAMALA D. {" "}
                                 </Text>
-                                <Text fontWeight="400" fontSize="20" color="gray.300">
+                                <Text fontWeight="500" fontSize="30" color="gray.100" display="inline" >
+                                     HARRIS
+                                </Text>
+                                <Text fontWeight="400" fontSize="20" color="gray.200" mt={2}>
                                     Tim Walz
                                 </Text>
                             </Box>
@@ -86,10 +98,13 @@ function Home () {
                             _hover={{ bg: "red.800" }}
                         >
                             <Box>
-                                <Text fontWeight="400" fontSize="30" mb={2}>
-                                    DONALD J. TRUMP
+                            <Text fontWeight="400" fontSize="30" color="gray.100" display="inline">
+                                    DONALD J. {" "}
                                 </Text>
-                                <Text fontWeight="400" fontSize="20" color="gray.300">
+                                <Text fontWeight="500" fontSize="30" color="gray.100" display="inline" >
+                                     TRUMP
+                                </Text>
+                                <Text fontWeight="400" fontSize="20" color="gray.200" mt={2}>
                                     JD Vance
                                 </Text>
                             </Box>
@@ -98,7 +113,7 @@ function Home () {
                 )}
             </Center>
 
-            <Center height="10vh"></Center>
+            <Center height="20vh"></Center>
         </Box>
     );
 }

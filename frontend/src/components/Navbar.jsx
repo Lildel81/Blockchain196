@@ -9,15 +9,19 @@ const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
 
 	return (
-		<Container maxW={"1140px"} px={4}>
+		<Container maxW={"2000px"} >
 			<Flex
-				h={16}
+				//h={16}
 				alignItems={"center"}
 				justifyContent={"space-between"}
 				flexDir={{
 					base: "column",
 					sm: "row",
 				}}
+				bg={colorMode === "light" ? "gray.200" : "black.900"} 
+				p={5} 
+				width="100%"
+				
 			>
 				<Text
 					fontSize={{ base: "28", sm: "40" }}
