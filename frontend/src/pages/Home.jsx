@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from '../components/Navbar';
-import { Box, Button, Heading, Container, Center, Stack, Image, Input, Text,  } from '@chakra-ui/react';
+import { Box, Button, Heading, Container, Center, Stack, Image, Input, Text, Flex } from '@chakra-ui/react';
 
 /* 
 ::TODO::
@@ -9,44 +9,96 @@ Buttons need to implement calls to the backend API
 */
 
 function Home () {
+    const [isSplit, setIsSplit] = useState(false);
+
     return (
         <Box>
             <Navbar />
             <Heading textAlign={"center"} marginTop={"8vh"}>
-
-                <Text fontWeight="bold" fontSize="5xl">2024 DIGITAL BALLOT</Text>
+                <Text fontWeight="300" textColor="gray.500" fontSize="80"> 2024 DIGITAL BALLOT </Text>
             </Heading>
-            <Center height={"50vh"} justifyContent={"center"}>
-                <Image src={"https://imgs.search.brave.com/gbcYiDOPmWNTc-mLYXN5TJtuXb4ZHsx0JXqtv03fdpQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jbm4uY29tL2Fw/aS92MS9pbWFnZXMv/c3RlbGxhci9wcm9k/LzIwMjQxMDI5LWth/bWFsYS1oYXJyaXMt/ZG9uYWxkLXRydW1w/LXNwbGl0LmpwZz9j/PTF4MSZxPWhfMjU2/LHdfMjU2LGNfZmls/bA"}></Image>
-            </Center>
-            <Center height="35vh">
-                <Container justifyContent={"center"} textAlign={"space-between"}>
-                    <Stack direction="row" spacing={10} width="100%">
-                        <Button width="100%" onClick={() => {
-                            console.log("Voting for Harris")
-                            // Post a Vote to the API for Harris
-                            }   
-                        }>
-                            <Box>
-                                <Text fontWeight="bold" fontSize="lg">KAMALA D. HARRIS</Text>
-                                <Text fontWeight="medium" fontSize="sm" color="gray.600">Tim Walz</Text>
-                            </Box>
-                            </Button>
 
-                        <Button width="100%" onClick={() => {
-                            console.log("Voting for Trump")
-                            // Post a Vote to the API for Trump
-                            }
-                        }>
-
+            <Center height="40vh">
+                {/* If not split, show a single circular button */}
+                {!isSplit ? (
+                    <Button
+                        onClick={() => setIsSplit(true)} // Splits the button on click
+                        size="4xl"
+                        bg="gray.600"
+                        color="white"
+                        borderRadius="50px 50px 50px 50px"
+                        width="900px"
+                        height="300px"
+                        _hover={{ bg: "gray.700" }}
+                    >
+                        <Text fontWeight="700" fontSize="4xl">
+                                    CLICK TO CAST VOTE
+                                </Text>
+                    </Button>
+                ) : (
+                    // If split, show two semi-circular buttons
+                    <Flex width="900px" justify="space-between">
+                        {/* Left Semi-Circle Button */}
+                        <Button
+                            onClick={
+                                () => {
+                                    setIsSplit(false)
+                                    console.log("Voting For Harris")
+                                // TODO: Pop up window. Ask for final confirmation
+                                // Display "BALLOT WAS SUCCESSFULLY CAST" Must login to new user to cast another.
+                                // Post a vote to API for Harris
+                                }
+                            } 
+                            width="50%"
+                            height="300px"
+                            borderRadius="50px 0 0 50px"
+                            bg="blue.700"
+                            color="white"
+                            _hover={{ bg: "blue.800" }}
+                        >
                             <Box>
-                                <Text fontWeight="bold" fontSize="lg">DONALD J. TRUMP</Text>
-                                <Text fontWeight="medium" fontSize="sm" color="gray.600">JD Vance</Text>
+                                
+                                <Text fontWeight="400" fontSize="30" color="gray.100" mb={2}>
+                                    KAMALA D. HARRIS
+                                </Text>
+                                <Text fontWeight="400" fontSize="20" color="gray.300">
+                                    Tim Walz
+                                </Text>
                             </Box>
-                            </Button>
-                    </Stack>
-                </Container>
+                        </Button>
+
+                        {/* Right Semi-Circle Button */}
+                        <Button
+                            onClick={
+                                () => {
+                                    setIsSplit(false)
+                                    console.log("Voting For Harris")
+                                // TODO: Pop up window. Ask for final confirmation
+                                // Display "BALLOT WAS SUCCESSFULLY CAST" Must login to new user to cast another.
+                                // Post a vote to API for Trump
+                                }
+                            } 
+                            width="50%"
+                            height="300px"
+                            borderRadius="0 50px 50px 0"
+                            bg="red.700"
+                            color="white"
+                            _hover={{ bg: "red.800" }}
+                        >
+                            <Box>
+                                <Text fontWeight="400" fontSize="30" mb={2}>
+                                    DONALD J. TRUMP
+                                </Text>
+                                <Text fontWeight="400" fontSize="20" color="gray.300">
+                                    JD Vance
+                                </Text>
+                            </Box>
+                        </Button>
+                    </Flex>
+                )}
             </Center>
+
+            <Center height="10vh"></Center>
         </Box>
     );
 }

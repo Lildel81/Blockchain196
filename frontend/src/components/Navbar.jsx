@@ -20,24 +20,24 @@ const Navbar = () => {
 				}}
 			>
 				<Text
-					fontSize={{ base: "22", sm: "28" }}
-					fontWeight={"bold"}
+					fontSize={{ base: "28", sm: "40" }}
+					fontWeight={"600"}
 					textTransform={"uppercase"}
 					textAlign={"center"}
-					bgGradient={"linear(to-r, red.400, gray.400, blue.400)"}
+					bgGradient={"linear(to-l, red.600, gray.500, blue.700)"}
 					bgClip={"text"}
 				>
 					<Link to={"/"}>US Presidential Election</Link>
 				</Text>
 
 				<Text
-					fontWeight = {"bold"}
+					fontWeight="600" fontSize="20"
 				>
-					<Link to={"/info"}>ELECTION INFO</Link>
+					<Link to={"/info"}>INFORMATION</Link>
 				</Text>
 
 				<Text
-				fontWeight = {"bold"}
+				fontWeight="600" fontSize="20"
 				>
 					<Link to={"/login"}>LOGIN</Link>
 				</Text>
