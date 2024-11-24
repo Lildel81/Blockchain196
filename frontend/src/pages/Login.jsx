@@ -11,6 +11,7 @@ import {
   Button,
   Container,
   Text,
+  useClipboard,
 } from '@chakra-ui/react';
 import Web3 from 'web3';
 
@@ -42,27 +43,33 @@ function App() {
     lastName: ''
   });
   const [address, setAddress] = useState('');
-  
+  const [isRegistered, setIsRegistered] = useState(false); // Track button click
+  const [usedAddresses, setUsedAddresses] = useState([]); // Track used addresses
+
   // Initialize Web3 with Ganache provider
   const web3 = new Web3('http://localhost:8545');  // Connect to Ganache CLI
 
-  // Fetch Ethereum accounts from Ganache
-  useEffect(() => {
-    const getAccounts = async () => {
-      try {
-        const accounts = await web3.eth.getAccounts();
-        if (accounts.length > 0) {
-          setAddress(accounts[0]);  // Use the first account from Ganache
+  // Function to fetch accounts and pick a random unused address
+  const getRandomAddress = async () => {
+    try {
+      const accounts = await web3.eth.getAccounts();
+      if (accounts.length > 0) {
+        // Filter out used addresses
+        const unusedAddresses = accounts.filter(account => !usedAddresses.includes(account));
+        if (unusedAddresses.length > 0) {
+          // If there are unused addresses, pick a random one and set it
+          const randomAddress = unusedAddresses[Math.floor(Math.random() * unusedAddresses.length)];
+          setAddress(randomAddress); // Set the random address
         } else {
-          console.error("No accounts found");
+          console.error("No unused accounts found");
         }
-      } catch (error) {
-        console.error("Error fetching accounts:", error);
+      } else {
+        console.error("No accounts found");
       }
-    };
-
-    getAccounts();
-  }, [web3]);
+    } catch (error) {
+      console.error("Error fetching accounts:", error);
+    }
+  };
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -78,7 +85,21 @@ function App() {
     }
     // Register the voter without voterId, using the address from Ganache
     registerVoter(formData.firstName, formData.lastName, address);
+
+    // Update usedAddresses and set isRegistered
+    setUsedAddresses(prevUsed => [...prevUsed, address]);
+    setIsRegistered(true);  // Set isRegistered to true after button click
   };
+
+  // Handle address copying using Chakra's useClipboard hook
+  const { onCopy, hasCopied } = useClipboard(address);
+
+  // Only run getRandomAddress once when the form is ready to submit
+  useEffect(() => {
+    if (!isRegistered && address === '') {
+      getRandomAddress(); // Fetch random address when the page loads or when registration hasn't been done yet
+    }
+  }, [isRegistered, address]);
 
   return (
     <ChakraProvider>
@@ -119,15 +140,19 @@ function App() {
               />
             </FormControl>
 
-            <FormControl id="ethereum-address" isRequired>
-              <FormLabel>Ethereum Address</FormLabel>
-              <Input
-                placeholder="Ethereum Address"
-                value={address}
-                readOnly
-                
-              />
-            </FormControl>
+            {isRegistered && (
+              <FormControl id="ethereum-address" isRequired>
+                <FormLabel>Ethereum Address</FormLabel>
+                <Box display="flex" alignItems="center">
+                  <Text mr={2} isTruncated maxW="250px">
+                    {address}
+                  </Text>
+                  <Button onClick={onCopy} size="sm" colorScheme="teal">
+                    {hasCopied ? "Copied" : "Copy"}
+                  </Button>
+                </Box>
+              </FormControl>
+            )}
 
             <Button
               colorScheme="teal"
