@@ -14,10 +14,10 @@ import {
   useClipboard,
 } from '@chakra-ui/react';
 import Web3 from 'web3';
+import { useNavigate } from 'react-router-dom';
 
 const registerVoter = async (firstName, lastName, voterAccount) => {
   try {
-    // Send voter details to backend API
     const response = await fetch("http://localhost:5000/api/votes/register-voter", {
       method: "POST",
       headers: {
@@ -38,40 +38,30 @@ const registerVoter = async (firstName, lastName, voterAccount) => {
 };
 
 function App() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: ''
-  });
+  const [formData, setFormData] = useState({ firstName: '', lastName: '' });
   const [address, setAddress] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false); // Track button click
-  const [usedAddresses, setUsedAddresses] = useState([]); // Track used addresses
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [usedAddresses, setUsedAddresses] = useState([]);
 
-  // Initialize Web3 with Ganache provider
-  const web3 = new Web3('http://localhost:8545');  // Connect to Ganache CLI
+  const navigate = useNavigate(); // For navigation to the home page
 
-  // Function to fetch accounts and pick a random unused address
+  const web3 = new Web3('http://localhost:8545');
+
   const getRandomAddress = async () => {
     try {
       const accounts = await web3.eth.getAccounts();
-      if (accounts.length > 0) {
-        // Filter out used addresses
-        const unusedAddresses = accounts.filter(account => !usedAddresses.includes(account));
-        if (unusedAddresses.length > 0) {
-          // If there are unused addresses, pick a random one and set it
-          const randomAddress = unusedAddresses[Math.floor(Math.random() * unusedAddresses.length)];
-          setAddress(randomAddress); // Set the random address
-        } else {
-          console.error("No unused accounts found");
-        }
+      const unusedAddresses = accounts.filter(account => !usedAddresses.includes(account));
+      if (unusedAddresses.length > 0) {
+        const randomAddress = unusedAddresses[Math.floor(Math.random() * unusedAddresses.length)];
+        setAddress(randomAddress);
       } else {
-        console.error("No accounts found");
+        console.error("No unused accounts found");
       }
     } catch (error) {
       console.error("Error fetching accounts:", error);
     }
   };
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -83,35 +73,23 @@ function App() {
       console.error("No Ethereum account selected");
       return;
     }
-    // Register the voter without voterId, using the address from Ganache
     registerVoter(formData.firstName, formData.lastName, address);
-
-    // Update usedAddresses and set isRegistered
     setUsedAddresses(prevUsed => [...prevUsed, address]);
-    setIsRegistered(true);  // Set isRegistered to true after button click
+    setIsRegistered(true);
   };
 
-  // Handle address copying using Chakra's useClipboard hook
   const { onCopy, hasCopied } = useClipboard(address);
 
-  // Only run getRandomAddress once when the form is ready to submit
   useEffect(() => {
     if (!isRegistered && address === '') {
-      getRandomAddress(); // Fetch random address when the page loads or when registration hasn't been done yet
+      getRandomAddress();
     }
   }, [isRegistered, address]);
 
   return (
     <ChakraProvider>
       <Container maxW="md" centerContent py={10}>
-        <Box
-          w="100%"
-          p={6}
-          borderRadius="md"
-          boxShadow="xl"
-          background="white"
-          textAlign="center"
-        >
+        <Box w="100%" p={6} borderRadius="md" boxShadow="xl" background="white" textAlign="center">
           <VStack spacing={4}>
             <Heading as="h2" size="lg" color="teal.500">
               Voter Registration
@@ -162,6 +140,17 @@ function App() {
             >
               Register
             </Button>
+
+            {isRegistered && (
+              <Button
+                colorScheme="blue"
+                size="lg"
+                width="100%"
+                onClick={() => navigate('/')}
+              >
+                Go Vote
+              </Button>
+            )}
           </VStack>
         </Box>
       </Container>
