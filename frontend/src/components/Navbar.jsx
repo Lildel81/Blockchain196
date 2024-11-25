@@ -19,6 +19,7 @@ const Navbar = () => {
 					sm: "row",
 				}}
 				//bg={colorMode === "light" ? "gray.200" : "black.900"} 
+				//bgImage to NAVbar
 				backgroundImage={'linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url("https://t3.ftcdn.net/jpg/00/22/35/86/360_F_22358642_TlOPo0uu0tAb22YINFwY1UDKxFON8TFR.jpg")'}
 				backgroundSize={"cover"}
 				p={5} 
