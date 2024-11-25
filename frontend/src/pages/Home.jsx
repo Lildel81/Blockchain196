@@ -1,24 +1,40 @@
 
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
-import { Box, Button, Heading, Center, Text, Flex, Input } from '@chakra-ui/react';
+import { Box, Button, Heading, Center, Text, Flex, Input, useToast } from '@chakra-ui/react';
+import axios from 'axios';
 
 function Home() {
     const [isSplit, setIsSplit] = useState(false);
     const [address, setAddress] = useState("");
     const [isAddressValid, setIsAddressValid] = useState(false);
+    const toast = useToast();
+
 
     const handleVote = async (vote) => {
         try {
-            const response = await fetch('http://localhost/voting/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ address, vote }),
+            const response = await axios.post('http://localhost:5000/voting/', 
+                { address, vote }, 
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true, // Enable CORS
+                }
+            );
+            const result = response.data;
+            toast({
+                title: result.message || 'Vote submitted successfully!',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
             });
-            const result = await response.json();
-            alert(result.message || 'Vote submitted successfully!');
         } catch (error) {
-            alert('Error submitting vote: ' + error.message);
+            toast({
+                title: 'Error submitting vote',
+                description: error.message,
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
         }
     };
 

@@ -11,9 +11,9 @@ const app = express();
 
 // Enable CORS
 app.use(cors({
-    origin: 'http://localhost:3000', // Replace with your frontend's URL and port
-    methods: ['GET', 'POST'],       // Allowed HTTP methods
+    origin: 'http://localhost:5173', // Replace with your frontend's URL and port
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true, // Enable credentials
 }));
 
 // Allows us to accept JSON data in the body of the request
