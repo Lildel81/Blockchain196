@@ -2,108 +2,77 @@
 pragma solidity ^0.8.0;
 
 contract Election {
-    string candidate; // Trump, Harris, etc
-    address[16] voter;
-    address electoral_college;
-    bool public votingActive;
-
     struct Counts {
-        uint64 red_total;
-        uint64 blue_total;
+        uint256 red_total; // Total votes for red candidate
+        uint256 blue_total; // Total votes for blue candidate
     }
 
-    Counts count;
+    Counts public count;
 
-    constructor() {
-        count = Counts(0, 0);
-        electoral_college = msg.sender;
-    }
+    mapping(address => bool) private hasVoted;
 
-    function Vote(string memory _candidate) public {
-        if(isVoting())
-        {
-            candidate = _candidate;
-        // Vote function is entirely two-party system for this basic example
-            if (keccak256(abi.encodePacked(candidate)) == (keccak256(abi.encodePacked("Trump")))) {
-                count.red_total += 1;
-            }
-            else {
-                count.blue_total += 1;
-            }
-        }
-        
-    }
+    address public owner;
+    bool public started;
+    bool public ended;
 
-    //Get the candidate voted for
-    function GetVote() public view returns(string memory) {
-        return candidate;
-    }
-
-    //Get the total votes for each side - Must be viewable by only the college
-    function GetCount() public view returns(Counts memory) {
-        require(!votingActive, displayError());
-        return count;
-    }
-
-    //must be seen by the college - not public view
-    function Winner() public view returns(string memory)
-    {   
-        if (!votingActive)
-        {
-            return "Voting hasn't started yet.";
-        }
-      
-        else
-        {
-            if((count.blue_total == 0) && (count.red_total) == 0)
-            {
-                require(votingActive, displayError());
-                return "No vote counted.";
-            }
-            //blue is Kamala
-            else if(count.blue_total > count.red_total)
-            {
-                require(votingActive, displayError());
-                return "The winner is Kamala";
-            }
-
-            //red is Trump
-            else if(count.red_total > count.blue_total)
-            {
-                require(votingActive, displayError());
-                return "The winner is Trump";
-            }
-            else {
-                require(votingActive, displayError());
-                return "Votes are tied!";
-            }
-        }
-    }
-
-    modifier electionController()
+    constructor()
     {
-        require(msg.sender == electoral_college, "Only the electoral college can view this!");
+        owner = msg.sender;
+        started = false;
+        ended = false;
+    }
+
+    modifier onlyOwner()
+    {
+        require(msg.sender == owner, "This action is only applicable to the electoral college");
         _;
     }
 
-    function displayError() public pure returns (string memory)
+    function startElection() public onlyOwner
     {
-        return "Only the electoral college can view this right now!";
+        require(!started, "Election has started");
+        started = true;
+        ended = false;
     }
 
-    
-
-    function startVoting() public electionController {
-        votingActive = true;
-    }
-
-    function endVoting() public electionController{
-        votingActive = false;
-    }
-
-    function isVoting() public view returns(bool)
+    function endElection() public onlyOwner
     {
-        return votingActive;
+        require(started, "Election has not started yet");
+        require (!ended, "Election has already ended");
+        ended = true;
     }
 
- }
+
+
+    // Vote function: Cast a vote for "Red" or "Blue"
+    function Vote(string memory _candidate) public {
+        // Ensure the voter hasn't already voted
+        require(started, "Election has not started yet");
+        require (!ended, "Election has already ended");
+        require(!hasVoted[msg.sender], " This address has already voted");
+
+        // Check the candidate and increment the respective count
+        if (keccak256(abi.encodePacked(_candidate)) == keccak256(abi.encodePacked("Red"))) {
+            count.red_total += 1;
+        } else if (keccak256(abi.encodePacked(_candidate)) == keccak256(abi.encodePacked("Blue"))) {
+            count.blue_total += 1;
+        } else {
+            revert("Invalid candidate"); // Reject invalid candidates
+        }
+
+        // Mark the sender as having voted
+        hasVoted[msg.sender] = true;
+    }
+
+    // GetCount function: Return the current vote totals
+    function GetCount() public view returns (uint256 redVotes, uint256 blueVotes) {
+        return (count.red_total, count.blue_total);
+    }
+
+    function GetResults() public view returns (uint256 redVotes, uint256 blueVotes)
+    {
+        require(ended, "Election is still in progress.");
+        return (count.red_total, count.blue_total);
+    }
+
+}

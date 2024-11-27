@@ -9,41 +9,53 @@ const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
 
 	return (
-		<Container maxW={"1140px"} px={4}>
+		<Container maxW={"2000px"} >
 			<Flex
-				h={16}
+				//h={16}
 				alignItems={"center"}
 				justifyContent={"space-between"}
 				flexDir={{
 					base: "column",
 					sm: "row",
 				}}
+				bg={colorMode === "light" ? "gray.200" : "black.900"} 
+				p={5} 
+				width="100%"
+				
 			>
 				<Text
-					fontSize={{ base: "22", sm: "28" }}
-					fontWeight={"bold"}
+					fontSize={{ base: "28", sm: "40" }}
+					fontWeight={"600"}
 					textTransform={"uppercase"}
 					textAlign={"center"}
-					bgGradient={"linear(to-r, cyan.400, blue.500)"}
+					bgGradient={"linear(to-l, red.600, gray.500, blue.600)"}
 					bgClip={"text"}
 				>
-					<Link to={"/"}>Product Store 🛒</Link>
+					<Link to={"/"}>US Presidential Election</Link>
+				</Text>
+
+				<Text
+					fontWeight="600" fontSize="20"
+				>
+					<Link to={"/info"}>INFORMATION</Link>
+				</Text>
+
+				<Text
+				fontWeight="600" fontSize="20"
+				>
+					<Link to={"/login"}>LOGIN</Link>
+				</Text>
+				
+				<Text
+				fontWeight="600" fontSize="20"
+				>
+					<Link to={"/Results"}>RESULTS</Link>
 				</Text>
 
 				<HStack spacing={3} alignItems={"center"}>
-					<Link to={"/create"}>
-						<Button>
-							<PlusSquareIcon fontSize={20} />
-						</Button>
-					</Link>
 					<Button onClick={toggleColorMode}>
 						{colorMode === "light" ? <IoMoon /> : <LuSun size='20' />}
 					</Button>
-                    <Link to={"/my_route"}>
-						<Button>
-							< InfoIcon fontSize={20} />
-						</Button>
-					</Link>
 				</HStack>
 			</Flex>
 		</Container>
