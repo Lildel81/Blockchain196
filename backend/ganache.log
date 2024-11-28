@@ -2,33 +2,33 @@ Ganache CLI v6.12.2 (ganache-core: 2.13.2)
 
 Available Accounts
 ==================
-(0) 0x1B20593DC51A3B66F0D3B7aCBec5bc41a843131C (100 ETH)
-(1) 0x0Cc84f355EB7768e055C41Aa488Ab6DD927B923c (100 ETH)
-(2) 0x98Df06f4139274f2d2A4FEfF6dd08E2e09817247 (100 ETH)
-(3) 0x61736E97455a63fb35D8e502943f0e02630C36E0 (100 ETH)
-(4) 0x7d5A006bd08EAd751a27Fa5b7944d428B74edeAF (100 ETH)
-(5) 0x79Abc6818Be5bC433e04A866F7F6f454D810Fd38 (100 ETH)
-(6) 0xF2C833718A2046864F22df8D2c58Cea1F64a5540 (100 ETH)
-(7) 0x07A4ddAB6bbB79aa805626672C15424dD9200c71 (100 ETH)
-(8) 0xA1A7d2691C1c0E28b788Bef9fe03B52605381462 (100 ETH)
-(9) 0xb915923dafAE34387B69bF49F27acF2D80454d7e (100 ETH)
+(0) 0x736F34deEabb6e373C8876Ba6319C4428E077a2E (100 ETH)
+(1) 0x90c97b963Dcc6EfFD3515e8844c653a910D12a43 (100 ETH)
+(2) 0x352f92d4C86AecB0A26062535a5aFCD9C4EA41bd (100 ETH)
+(3) 0xd0e531e124e0dfCa05444Ced6B6528b55884CF1F (100 ETH)
+(4) 0x8249Ecd491b90bD6fc0DF917CF20c1767Aa1Dd39 (100 ETH)
+(5) 0xcE088A7aA34A0aDd91F447420F3AB6c6533e3140 (100 ETH)
+(6) 0xE1823eCa85feC3fE352Fbfe578782dE412A329e5 (100 ETH)
+(7) 0x657c7a32eA69723F6Bb0D7C357B095c858b05c3d (100 ETH)
+(8) 0xF6eB11f392AD1dfD7816030e0814b25C22E0e69d (100 ETH)
+(9) 0xD36a35EaDd68596CCB463C5ec50e669D1dFA40AA (100 ETH)
 
 Private Keys
 ==================
-(0) 0x28e54ac159aef31a1f17d0f3fd0dd1d3d1400530571c0bc3960124c949fc79f5
-(1) 0xfc15d7394a1e410d16ee9b29ba88a462419b890f02ba783ef8a4dedfcf8a4fa4
-(2) 0xe6dab7165b39311ed87f84a59f239697e0df954ba6f2fd4e44da564852ee82ac
-(3) 0x11bd721b04dc738508ab395d261bc01b5aa89543df73f9f044ee37572680a284
-(4) 0x5e195c04d0c903bd4d9e2339eaaad2da548a1f099cc129676a10564c8d912ab4
-(5) 0xff4fa71a1193b772fb10b7fc2dddeeb6507caf11b3c90926a88a08e6fc55c6c6
-(6) 0xc2496e5dfeb16a310c69d624b40285832a3eada45fe2c3029bb3fed58cf49416
-(7) 0x43dc469d13010289e17e4766e08f8ac05325aa524bb86014bef7898c11271297
-(8) 0x2edcaea51c3a891a17fb1f9b32716bf86276831b2a8a9791966e0715ac7bcbcd
-(9) 0x675d8d604aee53443e961e62a4822d053228e81a99682c0bd53bf5daaf665903
+(0) 0xf2717cc434e8e95d2efee6803f6a4da499911723cf247a5e44429f529d06251d
+(1) 0x26d86ff1fbec0bf5f793038992f89e2dc8a8f1eaf05bf3e778bd67eff35e7454
+(2) 0x5dff2a8a060cbdfbb1604796bc80d4bd1200dc949711d36d79aa879cc8719b33
+(3) 0xf27e568922d4f20ed5cdd16aed14db056bf890e78428aee325c579c6823c89ff
+(4) 0x96c41570ac651041810fd7b3d4f076b063023d235f50d57edea4b8386ab82251
+(5) 0x55440c151a1f3eefe253cf45959e199c6998ea469e3b5d2bab8661306b8f2258
+(6) 0xebd162c67830dcd33861cda77dc57570d31f50ed31b675ed2f35698fa302a228
+(7) 0x2dbfb60bf8c0a4c3b34f61af0c848b511ff6d2b4895c2b8492f586314c828c10
+(8) 0x626f859a4368af8283a71795e4f8becb31370361fafef4617b2e23114949bd41
+(9) 0x155ea9983a43b697965a5d59c2206dd56ef7204293a68c0e4635b069c0b66b4b
 
 HD Wallet
 ==================
-Mnemonic:      age exotic sell jungle guilt flat remember siege emerge tide rabbit reward
+Mnemonic:      retire firm mail feel resource armor rabbit embody current remind scale vehicle
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 
 Gas Price
@@ -60,11 +60,11 @@ eth_blockNumber
 eth_getBlockByNumber
 eth_sendTransaction
 
-  Transaction: 0xf562322cf623ad73719f7912b73bc000b96ddf3812fd3fb6608684380f5491f3
-  Contract created: 0x4e81f63ad67631a28a96233d48e41be2c7a05516
+  Transaction: 0xddf49a104f48d9ba6e4080cfde68ea036cf2044cd8718446a65d8c563143efa0
+  Contract created: 0xbbfeb406a220c9581e8f78f2703b440979669cb1
   Gas usage: 476817
   Block Number: 1
-  Block Time: Tue Nov 26 2024 16:34:38 GMT-0800 (Pacific Standard Time)
+  Block Time: Tue Nov 26 2024 19:30:16 GMT-0800 (Pacific Standard Time)
 
 eth_getTransactionReceipt
 eth_getCode
@@ -73,12 +73,6 @@ eth_getBlockByNumber
 eth_getBalance
 eth_accounts
 net_version
-eth_accounts
-net_version
-eth_call
-eth_call
-eth_call
-eth_call
 eth_call
 eth_call
 eth_call
@@ -88,89 +82,77 @@ eth_accounts
 eth_blockNumber
 eth_sendTransaction
 
-  Transaction: 0x02053f29ab4a385784200e5a15e432fb3207ce7e58a9f857227032a644d4996f
+  Transaction: 0xe122515b7f0d93d10078631c98e07d0471983879d0b3f5aca2df094eb3525a49
   Gas usage: 23018
   Block Number: 2
-  Block Time: Tue Nov 26 2024 16:36:07 GMT-0800 (Pacific Standard Time)
+  Block Time: Tue Nov 26 2024 19:42:39 GMT-0800 (Pacific Standard Time)
   Runtime Error: revert
   Revert reason: Election has not started yet
 
 eth_blockNumber
 eth_sendTransaction
 
-  Transaction: 0xb3bb31c3f583f8fb39b8ae7f3cea71c89ce89ab04813113ec766c68ca350c5e5
+  Transaction: 0x4e12cc6f7e1cb747216131facf76acfe9269f0815598edd14cf0b2b045c3c64a
   Gas usage: 28793
   Block Number: 3
-  Block Time: Tue Nov 26 2024 16:36:16 GMT-0800 (Pacific Standard Time)
+  Block Time: Tue Nov 26 2024 19:43:06 GMT-0800 (Pacific Standard Time)
 
 eth_getTransactionReceipt
 eth_blockNumber
 eth_blockNumber
 eth_sendTransaction
 
-  Transaction: 0xe205ec50633407d071c7e5de763c56a601af2369ceec258e49d7467564d9a1be
+  Transaction: 0x11abcb2717cf471904102d0e46ce33a7b11c8af2d951e2d7a86bca6f52974056
   Gas usage: 66888
   Block Number: 4
-  Block Time: Tue Nov 26 2024 16:36:24 GMT-0800 (Pacific Standard Time)
+  Block Time: Tue Nov 26 2024 19:43:17 GMT-0800 (Pacific Standard Time)
 
 eth_getTransactionReceipt
 eth_blockNumber
-eth_blockNumber
-eth_sendTransaction
-
-  Transaction: 0xad3163c693d8314cd253b6b48e3f77194c3c7a33804afacd84044a90045fef1c
-  Gas usage: 24767
-  Block Number: 5
-  Block Time: Tue Nov 26 2024 16:36:26 GMT-0800 (Pacific Standard Time)
-  Runtime Error: revert
-  Revert reason:  This address has already voted
-
+eth_call
+eth_call
+eth_call
+eth_call
+eth_accounts
+eth_accounts
 eth_accounts
 eth_accounts
 eth_blockNumber
 eth_sendTransaction
 
-  Transaction: 0x15dd07114815d32044f86f589213ff82c0f3581440fbef90bbc210787b3d1d26
+  Transaction: 0x23f2b6ac35b660dde3f9f50fce481045a1459222f3a3315e6b9fc3e13cc6bae1
   Gas usage: 67317
+  Block Number: 5
+  Block Time: Tue Nov 26 2024 19:43:43 GMT-0800 (Pacific Standard Time)
+
+eth_getTransactionReceipt
+eth_blockNumber
+eth_accounts
+eth_accounts
+eth_blockNumber
+eth_sendTransaction
+
+  Transaction: 0x8b5d9713837cc9c13a43215c6994cf02c4e45f56251a1bf26af119d38424e5ae
+  Gas usage: 51888
   Block Number: 6
-  Block Time: Tue Nov 26 2024 16:36:50 GMT-0800 (Pacific Standard Time)
+  Block Time: Tue Nov 26 2024 19:44:00 GMT-0800 (Pacific Standard Time)
 
 eth_getTransactionReceipt
 eth_blockNumber
-eth_accounts
-eth_accounts
+eth_call
+eth_call
+eth_call
+eth_call
 eth_blockNumber
 eth_sendTransaction
 
-  Transaction: 0xd67644c8d48527adfd734c62cc29be98f2bc80bbea504ba05fe255dd9a7e2d40
-  Gas usage: 52317
-  Block Number: 7
-  Block Time: Tue Nov 26 2024 16:37:15 GMT-0800 (Pacific Standard Time)
-
-eth_getTransactionReceipt
-eth_blockNumber
-eth_blockNumber
-eth_sendTransaction
-
-  Transaction: 0x66881ed55c99a5af887a8f9bff431f42885918398b073319310acaf9e94fa52b
-  Gas usage: 24767
-  Block Number: 8
-  Block Time: Tue Nov 26 2024 16:37:18 GMT-0800 (Pacific Standard Time)
-  Runtime Error: revert
-  Revert reason:  This address has already voted
-
-eth_blockNumber
-eth_sendTransaction
-
-  Transaction: 0x23f27c29644e59577918c21804c1c57ff8f2a5025172957420a6a90e73d3751f
+  Transaction: 0x680aedfd7d94c0c84b14e41aeafb7a2fa0f2eca8ed0de2266fac4a752e579123
   Gas usage: 29611
-  Block Number: 9
-  Block Time: Tue Nov 26 2024 16:37:28 GMT-0800 (Pacific Standard Time)
+  Block Number: 7
+  Block Time: Tue Nov 26 2024 19:44:16 GMT-0800 (Pacific Standard Time)
 
 eth_getTransactionReceipt
 eth_blockNumber
-eth_call
-eth_call
 eth_call
 eth_call
 eth_call
