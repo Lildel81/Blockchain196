@@ -83,3 +83,166 @@ eth_sendTransaction
 
 eth_getTransactionReceipt
 eth_blockNumber
+Ganache CLI v6.12.2 (ganache-core: 2.13.2)
+
+Available Accounts
+==================
+(0) 0x736F34deEabb6e373C8876Ba6319C4428E077a2E (100 ETH)
+(1) 0x90c97b963Dcc6EfFD3515e8844c653a910D12a43 (100 ETH)
+(2) 0x352f92d4C86AecB0A26062535a5aFCD9C4EA41bd (100 ETH)
+(3) 0xd0e531e124e0dfCa05444Ced6B6528b55884CF1F (100 ETH)
+(4) 0x8249Ecd491b90bD6fc0DF917CF20c1767Aa1Dd39 (100 ETH)
+(5) 0xcE088A7aA34A0aDd91F447420F3AB6c6533e3140 (100 ETH)
+(6) 0xE1823eCa85feC3fE352Fbfe578782dE412A329e5 (100 ETH)
+(7) 0x657c7a32eA69723F6Bb0D7C357B095c858b05c3d (100 ETH)
+(8) 0xF6eB11f392AD1dfD7816030e0814b25C22E0e69d (100 ETH)
+(9) 0xD36a35EaDd68596CCB463C5ec50e669D1dFA40AA (100 ETH)
+
+Private Keys
+==================
+(0) 0xf2717cc434e8e95d2efee6803f6a4da499911723cf247a5e44429f529d06251d
+(1) 0x26d86ff1fbec0bf5f793038992f89e2dc8a8f1eaf05bf3e778bd67eff35e7454
+(2) 0x5dff2a8a060cbdfbb1604796bc80d4bd1200dc949711d36d79aa879cc8719b33
+(3) 0xf27e568922d4f20ed5cdd16aed14db056bf890e78428aee325c579c6823c89ff
+(4) 0x96c41570ac651041810fd7b3d4f076b063023d235f50d57edea4b8386ab82251
+(5) 0x55440c151a1f3eefe253cf45959e199c6998ea469e3b5d2bab8661306b8f2258
+(6) 0xebd162c67830dcd33861cda77dc57570d31f50ed31b675ed2f35698fa302a228
+(7) 0x2dbfb60bf8c0a4c3b34f61af0c848b511ff6d2b4895c2b8492f586314c828c10
+(8) 0x626f859a4368af8283a71795e4f8becb31370361fafef4617b2e23114949bd41
+(9) 0x155ea9983a43b697965a5d59c2206dd56ef7204293a68c0e4635b069c0b66b4b
+
+HD Wallet
+==================
+Mnemonic:      retire firm mail feel resource armor rabbit embody current remind scale vehicle
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Gas Price
+==================
+20000000000
+
+Gas Limit
+==================
+6721975
+
+Call Gas Limit
+==================
+9007199254740991
+
+Listening on 127.0.0.1:8545
+eth_blockNumber
+net_version
+eth_accounts
+eth_getBlockByNumber
+eth_accounts
+net_version
+eth_getBlockByNumber
+eth_getBlockByNumber
+net_version
+eth_getBlockByNumber
+eth_estimateGas
+net_version
+eth_blockNumber
+eth_getBlockByNumber
+eth_sendTransaction
+
+  Transaction: 0xddf49a104f48d9ba6e4080cfde68ea036cf2044cd8718446a65d8c563143efa0
+  Contract created: 0xbbfeb406a220c9581e8f78f2703b440979669cb1
+  Gas usage: 476817
+  Block Number: 1
+  Block Time: Tue Nov 26 2024 19:30:16 GMT-0800 (Pacific Standard Time)
+
+eth_getTransactionReceipt
+eth_getCode
+eth_getTransactionByHash
+eth_getBlockByNumber
+eth_getBalance
+eth_accounts
+net_version
+eth_call
+eth_call
+eth_call
+eth_call
+eth_accounts
+eth_accounts
+eth_blockNumber
+eth_sendTransaction
+
+  Transaction: 0xe122515b7f0d93d10078631c98e07d0471983879d0b3f5aca2df094eb3525a49
+  Gas usage: 23018
+  Block Number: 2
+  Block Time: Tue Nov 26 2024 19:42:39 GMT-0800 (Pacific Standard Time)
+  Runtime Error: revert
+  Revert reason: Election has not started yet
+
+eth_blockNumber
+eth_sendTransaction
+
+  Transaction: 0x4e12cc6f7e1cb747216131facf76acfe9269f0815598edd14cf0b2b045c3c64a
+  Gas usage: 28793
+  Block Number: 3
+  Block Time: Tue Nov 26 2024 19:43:06 GMT-0800 (Pacific Standard Time)
+
+eth_getTransactionReceipt
+eth_blockNumber
+eth_blockNumber
+eth_sendTransaction
+
+  Transaction: 0x11abcb2717cf471904102d0e46ce33a7b11c8af2d951e2d7a86bca6f52974056
+  Gas usage: 66888
+  Block Number: 4
+  Block Time: Tue Nov 26 2024 19:43:17 GMT-0800 (Pacific Standard Time)
+
+eth_getTransactionReceipt
+eth_blockNumber
+eth_call
+eth_call
+eth_call
+eth_call
+eth_accounts
+eth_accounts
+eth_accounts
+eth_accounts
+eth_blockNumber
+eth_sendTransaction
+
+  Transaction: 0x23f2b6ac35b660dde3f9f50fce481045a1459222f3a3315e6b9fc3e13cc6bae1
+  Gas usage: 67317
+  Block Number: 5
+  Block Time: Tue Nov 26 2024 19:43:43 GMT-0800 (Pacific Standard Time)
+
+eth_getTransactionReceipt
+eth_blockNumber
+eth_accounts
+eth_accounts
+eth_blockNumber
+eth_sendTransaction
+
+  Transaction: 0x8b5d9713837cc9c13a43215c6994cf02c4e45f56251a1bf26af119d38424e5ae
+  Gas usage: 51888
+  Block Number: 6
+  Block Time: Tue Nov 26 2024 19:44:00 GMT-0800 (Pacific Standard Time)
+
+eth_getTransactionReceipt
+eth_blockNumber
+eth_call
+eth_call
+eth_call
+eth_call
+eth_blockNumber
+eth_sendTransaction
+
+  Transaction: 0x680aedfd7d94c0c84b14e41aeafb7a2fa0f2eca8ed0de2266fac4a752e579123
+  Gas usage: 29611
+  Block Number: 7
+  Block Time: Tue Nov 26 2024 19:44:16 GMT-0800 (Pacific Standard Time)
+
+eth_getTransactionReceipt
+eth_blockNumber
+eth_call
+eth_call
+eth_call
+eth_call
+eth_call
+eth_call
+eth_call
+eth_call
